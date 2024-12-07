@@ -1,169 +1,136 @@
-# Simplified DES (S-DES) Implementation
+# Understanding the Simplified DES (SDES) Encryption Algorithm
 
-This project implements a simplified version of the Data Encryption Standard (S-DES) algorithm in Python using the **NumPy** library. The program performs key generation, encryption, and decryption of 8-bit blocks, following the principles of symmetric key cryptography.
+## Introduction to Symmetric Encryption
 
----
+Symmetric encryption is a fundamental cryptographic technique where the same key is used for both encryption and decryption. The Simplified Data Encryption Standard (SDES) is a simplified version of the Data Encryption Standard (DES), designed to teach the core principles of block cipher encryption.
 
-## Features
-- **Key Generation**:
-  - Generates two subkeys \( K1 \) and \( K2 \) from a 10-bit key using permutation and left circular shifts.
-  
-- **Encryption**:
-  - Encrypts an 8-bit plaintext using \( K1 \) and \( K2 \) with the Feistel network structure.
-  
-- **Decryption**:
-  - Decrypts an 8-bit ciphertext using the subkeys in reverse order.
-  
-- **Utility Functions**:
-  - Modular functions for permutations, splitting arrays, circular shifts, and S-box lookups.
+## Key Characteristics of SDES
 
----
+- **Block Size**: 8 bits
+- **Key Size**: 10 bits
+- **Number of Rounds**: 2
+- **Purpose**: Educational tool to demonstrate encryption principles
 
-## Algorithm Overview
+## Key Generation Process
 
-1. **Key Generation**:
-   - A 10-bit key is permuted using \( P10 \), split into two halves, left-shifted, recombined, and reduced to 8 bits using \( P8 \) to form \( K1 \).
-   - Another round of left shifts and \( P8 \) generates \( K2 \).
+The key generation is a critical first step in the SDES algorithm:
 
-2. **Encryption**:
-   - The plaintext is permuted with \( IP \) (Initial Permutation).
-   - Two rounds of Feistel functions are applied:
-     - The right half is expanded, XORed with the subkey, substituted via S-boxes, permuted with \( P4 \), and XORed with the left half.
-     - The halves are swapped after the first round.
-   - \( IP^{-1} \) is applied to the final block to produce the ciphertext.
+1. **Initial Key Permutation (P10)**
+   - Takes the 10-bit master key
+   - Rearranges bits according to a predefined permutation table
+   - Example: [3, 5, 2, 7, 4, 10, 1, 9, 8, 6]
 
-3. **Decryption**:
-   - Decrypts by reversing the key order in the Feistel rounds: \( K2 \) is applied first, then \( K1 \).
+2. **Key Division**
+   - Splits the permuted key into two 5-bit halves
+   - Left half (Ls) and Right half (Rs)
 
----
+3. **Circular Left Shift**
+   - Performs a circular left shift on both halves
+   - First round: 1-bit shift
+   - Second round: 2-bit shift
 
-## Files in the Repository
+4. **Key Compression (P8)**
+   - Compresses the shifted key to 8 bits
+   - Creates two subkeys (K1 and K2)
 
-- **`sdes.py`**:
-  - The main implementation of the S-DES algorithm, including classes and functions for key generation, encryption, and decryption.
-  
-- **`README.md`**:
-  - Documentation explaining the implementation and usage.
+## Encryption Process
 
----
+The encryption follows a systematic approach:
 
-## Dependencies
+### 1. Initial Permutation (IP)
+- Rearranges the 8-bit input block
+- Uses a specific permutation table
+- Helps distribute bits across the block
 
-This project requires **Python 3.x** and **NumPy**.
+### 2. Feistel Function (F-function)
+A complex transformation involving multiple steps:
 
-Install NumPy if not already installed:
-```bash
-pip install numpy
+a) **Expansion Permutation**
+   - Expands the 4-bit right half to 8 bits
+   - Uses an expansion permutation table
+   - Increases the bit spread
+
+b) **Key Mixing (XOR)**
+   - XORs the expanded block with the current round key
+   - Introduces key-dependent confusion
+
+c) **S-Box Substitution**
+   - Splits the XORed block into two 4-bit halves
+   - Uses two predefined S-Boxes (S0 and S1)
+   - Performs non-linear substitution
+   - Converts 4-bit input to 2-bit output based on row and column lookup
+
+d) **Permutation (P4)**
+   - Rearranges the 4 bits from S-Boxes
+   - Further distributes bit positions
+
+e) **XOR with Left Half**
+   - XORs the transformed right half with the original left half
+
+### 3. Swap Operation
+- Swaps left and right halves after the first round
+- Creates additional complexity
+
+### 4. Second Round
+- Repeats the process with the second subkey (K2)
+
+### 5. Final Permutation (Inverse IP)
+- Performs a final bit rearrangement
+- Completes the encryption process
+
+## Decryption Process
+
+Decryption is the exact reverse of encryption:
+1. Use the same steps
+2. Apply keys in reverse order (K2 first, then K1)
+3. Ensures perfect reconstruction of the original plaintext
+
+## Example Walkthrough
+
+```python
+# Master Key: [1, 0, 1, 0, 0, 0, 0, 0, 1, 0]
+# Plaintext:  [1, 0, 0, 1, 0, 1, 1, 1]
+
+# 1. Key Generation
+# Generates K1 and K2 using permutations and shifts
+
+# 2. Encryption Steps
+# - Initial Permutation
+# - First round with K1
+# - Swap
+# - Second round with K2
+# - Final Permutation
+
+# Result is the encrypted ciphertext
 ```
 
----
+## Strengths and Limitations
 
-## How to Use
+### Strengths
+- Illustrates encryption principles
+- Simple to understand
+- Demonstrates key concepts of block ciphers
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/sdes-implementation.git
-   cd sdes-implementation
-   ```
+### Limitations
+- Very small key and block size
+- Weak against modern cryptanalysis
+- Not suitable for real-world security
 
-2. **Run the Script**:
-   Use the provided `main()` function in the script to test the algorithm:
-   ```bash
-   python sdes.py
-   ```
+## Mathematical Foundations
 
-3. **Key Generation Example**:
-   - Input: `0001101101`
-   - Outputs:
-     - \( K1 = 10100100 \)
-     - \( K2 = 01000011 \)
+SDES demonstrates key cryptographic principles:
+- Confusion: Obscuring relationship between key and ciphertext
+- Diffusion: Spreading input bits across the output
+- Non-linearity: Using S-Boxes to introduce complex transformations
 
-4. **Encryption Example**:
-   - Plaintext: `11010111`
-   - Key: `0001101101`
-   - Ciphertext: `10111101`
+## Educational Significance
 
-5. **Decryption Example**:
-   - Ciphertext: `10111101`
-   - Key: `0001101101`
-   - Decrypted Plaintext: `11010111`
+SDES serves as a perfect educational tool to understand:
+- Symmetric encryption mechanics
+- Key generation processes
+- Block cipher design
+- Bit manipulation techniques
 
----
+## Conclusion
 
-## Code Structure
-
-### **Class: `SDES`**
-
-1. **Key Tables and Constants**:
-   - \( P10, P8, IP, IP^{-1}, EP, P4 \)
-   - S-Boxes: \( S0 \), \( S1 \)
-
-2. **Key Functions**:
-   - `key_generation(key: str)`: Generates \( K1 \) and \( K2 \).
-   - `table_shift(array, table_array)`: Applies permutation tables.
-
-3. **Encryption/Decryption**:
-   - `encrypt_block(plaintext, key)`: Encrypts an 8-bit plaintext.
-   - `decrypt_block(ciphertext, key)`: Decrypts an 8-bit ciphertext.
-
-4. **Utilities**:
-   - `array_split(array)`: Splits an array into two halves.
-   - `shifting_LtoR(array)`: Performs left circular shifts.
-   - `sbox_lookup(input_bits, sbox)`: Substitutes bits using S-boxes.
-
----
-
-## Sample Output
-
-```plaintext
-Key Generation Test:
-Original Key: 0001101101
-Key 1: 10100100
-Key 2: 01000011
-
-Encryption/Decryption Test:
-Plaintext: 11010111
-Ciphertext: 10111101
-Decrypted: 11010111
-Successful: True
-```
-
----
-
-## Debugging and Customization
-
-1. **Debugging**:
-   - Add `debug=True` in the `encrypt_block` or `decrypt_block` method to print intermediate results.
-
-2. **Customization**:
-   - Modify S-boxes, permutation tables, or key lengths for experimentation.
-
----
-
-## Limitations
-
-- **Key Size**: Limited to 10-bit keys, making it insecure for real-world applications.
-- **Block Size**: Operates only on 8-bit plaintext blocks.
-- **Purpose**: Educational; not suitable for practical encryption.
-
----
-
-## Learning Outcomes
-
-This implementation demonstrates:
-- Fundamentals of symmetric key cryptography.
-- Key scheduling and Feistel networks.
-- Use of substitution and permutation for diffusion and confusion.
-
----
-
-## Author
-
-Your Name  
-[Your GitHub Profile](https://github.com/your-username)
-
-For questions or suggestions, feel free to open an issue in the repository.
-
---- 
-
-Feel free to customize this README file further to suit your repository and personal preferences.
+While Simplified DES is not a practical encryption method, it provides an invaluable learning experience in understanding the fundamental mechanisms of symmetric encryption algorithms.
