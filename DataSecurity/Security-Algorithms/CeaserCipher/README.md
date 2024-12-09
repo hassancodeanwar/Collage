@@ -112,9 +112,9 @@ The time complexity for both encryption and decryption processes is $$O(N)$$, wh
 The Caesar Cipher serves as an excellent introduction to cryptography concepts. While it may not provide strong security in contemporary contexts, its simplicity makes it a valuable educational tool for understanding basic encryption techniques.
 
 Citations:
-[1] https://www.splunk.com/en_us/blog/learn/caesar-cipher.html
-[2] https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/
-[3] https://codedamn.com/news/cryptography/caesar-cipher-introduction
-[4] https://www.javatpoint.com/caesar-cipher-technique
-[5] https://brilliant.org/wiki/caesar-cipher/
-[6] https://en.wikipedia.org/wiki/Caesar_cypher
+   - [1] https://www.splunk.com/en_us/blog/learn/caesar-cipher.html
+   - [2] https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/
+   - [3] https://codedamn.com/news/cryptography/caesar-cipher-introduction
+   - [4] https://www.javatpoint.com/caesar-cipher-technique
+   - [5] https://brilliant.org/wiki/caesar-cipher/
+   - [6] https://en.wikipedia.org/wiki/Caesar_cypher
