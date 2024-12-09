@@ -264,7 +264,7 @@ The time complexity of both encryption and decryption processes is $$O(N)$$, whe
 Simplified DES serves as a fundamental learning tool that illustrates core concepts of symmetric encryption algorithms. While it lacks robustness against modern cryptographic attacks due to its simplicity and small parameter sizes compared to its full counterpart DES or AES algorithms today.
 
 Citations:
-[1] https://myethiolectures.files.wordpress.com/2015/06/simplified-des.pdf
-[2] https://www.uomustansiriyah.edu.iq/media/lectures/6/6_2022_05_15!02_16_49_PM.pdf
-[3] https://opencourses.emu.edu.tr/pluginfile.php/47494/mod_resource/content/3/Block%20ciphers%20(Simplified%20DES).pdf
-[4] https://www.geeksforgeeks.org/simplified-data-encryption-standard-set-2/
+    - [1] https://myethiolectures.files.wordpress.com/2015/06/simplified-des.pdf
+    - [2] https://www.uomustansiriyah.edu.iq/media/lectures/6/6_2022_05_15!02_16_49_PM.pdf
+    - [3] https://opencourses.emu.edu.tr/pluginfile.php/47494/mod_resource/content/3/Block%20ciphers%20(Simplified%20DES).pdf
+    - [4] https://www.geeksforgeeks.org/simplified-data-encryption-standard-set-2/
