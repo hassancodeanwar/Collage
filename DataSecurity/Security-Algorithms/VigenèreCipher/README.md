@@ -1,7 +1,4 @@
 # Vigenère Cipher Algorithm Documentation
-
-## Overview
-
 | Overview | Blaise de Vigenère |
 |------|-------|
 | The **Vigenère Cipher** is a method of encrypting alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword. This polyalphabetic substitution cipher enhances security compared to simple ciphers by using multiple shifting techniques, making it more resistant to frequency analysis. | <img src="https://api.art.rmngp.fr/v1/images/17/23474?t=l6EvDGm-LeC3vzqGqOUPlA" alt="Vigenère Cipher"> |
