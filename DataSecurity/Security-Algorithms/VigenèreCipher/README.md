@@ -4,7 +4,7 @@
 
 The **Vigenère Cipher** is a method of encrypting alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword. This polyalphabetic substitution cipher enhances security compared to simple ciphers by using multiple shifting techniques, making it more resistant to frequency analysis.
 
-[image]('https://upload.wikimedia.org/wikipedia/commons/1/1a/Vigenere.jpg')
+![image](https://upload.wikimedia.org/wikipedia/commons/1/1a/Vigenere.jpg)
 ## How It Works
 
 ### Key Concepts
