@@ -162,8 +162,8 @@ The time complexity for both encryption and decryption processes is $$O(N)$$, wh
 The Vigenère Cipher is an essential tool in classical cryptography that combines simplicity with enhanced security through polyalphabetic encryption techniques. While not suitable for modern secure communications without additional measures, it serves as an excellent educational tool for understanding fundamental cryptographic principles.
 
 Citations:
-[1] https://dev.to/cognivibes/understanding-the-vigenere-cipher-16g5
-[2] https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
-[3] https://brilliant.org/wiki/vigenere-cipher/
-[4] https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
-[5] https://www.javatpoint.com/vigenere-cipher
+   - [1] https://dev.to/cognivibes/understanding-the-vigenere-cipher-16g5
+   - [2] https://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
+   - [3] https://brilliant.org/wiki/vigenere-cipher/
+   - [4] https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+   - [5] https://www.javatpoint.com/vigenere-cipher
